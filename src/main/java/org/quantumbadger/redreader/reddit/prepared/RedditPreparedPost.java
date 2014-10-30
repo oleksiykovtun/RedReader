@@ -417,7 +417,9 @@ public final class RedditPreparedPost {
 			case GOTO_SUBREDDIT: {
 
 				try {
-					final Intent intent = new Intent(activity, PostListingActivity.class);
+                    boolean twoPane = General.isTablet(activity, PreferenceManager.getDefaultSharedPreferences(activity));
+					final Intent intent = new Intent(activity, twoPane ? MainActivity.class : PostListingActivity.class);
+
 					intent.setData(RedditURLParser.SubredditPostListURL.getSubreddit(post.src.subreddit).generateJsonUri());
 					activity.startActivityForResult(intent, 1);
 

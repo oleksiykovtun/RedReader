@@ -107,6 +107,17 @@ public class MainActivity extends RefreshableActivity
 
 		setContentView(layout);
 
+        if(twoPane && getIntent() != null && getIntent().getData() != null) {
+            final RedditURLParser.RedditURL url = RedditURLParser.parseProbablePostListing(getIntent().getData());
+
+            if(!(url instanceof RedditURLParser.PostListingURL)) {
+                throw new RuntimeException(String.format("'%s' is not a post listing URL!", url.generateJsonUri()));
+            }
+
+            postListingController = new PostListingController((RedditURLParser.PostListingURL)url);
+            requestRefresh(RefreshableFragment.POSTS, false);
+        }
+
 		doRefresh(RefreshableFragment.MAIN, false);
 
 		RedditAccountManager.getInstance(this).addUpdateListener(this);
