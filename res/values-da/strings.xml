@@ -33,7 +33,7 @@
 
 <resources>
 
-    <string name="app_name">RedReader Beta</string>
+    <string name="app_name">RedReader</string>
 
     <!-- First Run Dialog -->
 
